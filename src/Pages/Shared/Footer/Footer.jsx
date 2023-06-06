@@ -16,20 +16,20 @@ const Footer = () => {
           <a className="link link-hover">About us</a>
           <a className="link link-hover">Contact</a>
           <a className="link link-hover">Jobs</a>
-          <a className="link link-hover">Press kit</a>
+          <a className="">Press kit</a>
         </div>
         <div>
-          <span className="footer-title">Legal</span>
-          <a className="link link-hover">Terms of use</a>
-          <a className="link link-hover">Privacy policy</a>
-          <a className="link link-hover">Cookie policy</a>
+          <span className="footer-title">Address</span>
+        <p className="link link-hover">Dhaka-Bangladesh <br />
+        Sector-11, House-98, RoadNo- 18, Uttara
+        </p>
         </div>
       </footer>
       <footer>
         <div className="footer  py-4 border-t px-20  border-base-300">
           <div className="items-center grid-flow-col">
             <p>
-              All Star Martial Art Ltd <br />
+              All Star Martial Art  <br />
               Providing reliable skills since 1992
             </p>
           </div>
@@ -72,9 +72,9 @@ const Footer = () => {
           </div>
         </div>
 
-        <footer className="footer footer-center p-4 text-base-content">
+        <footer className="footer footer-center p-4 ">
           <div>
-            <p>Copyright © 2023 - All right reserved by ACME Industries Ltd</p>
+            <p>Copyright © 2023 - All right reserved by  All Star Martial Art </p>
           </div>
         </footer>
       </footer>
