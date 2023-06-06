@@ -10,7 +10,7 @@ import image3 from "../../../assets/two-professional-boxer-boxing-black-smoky-ba
 const AutoplaySlider = withAutoplay(AwesomeSlider);
 const TopSlider = () => {
   return (
-   <div>
+   <div className='mb-10'>
      <AutoplaySlider
     play={true}
     style={{ height: '700px' }}

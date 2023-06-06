@@ -27,7 +27,7 @@ const Header = () => {
     </>
   );
   return (
-    <div className="navbar bg-[#27282C] text-white h-28">
+    <div className="navbar fixed z-10 bg-opacity-30 font-serif   text-white h-28">
       <div className="navbar-start">
         <div className="dropdown">
           <label className="btn btn-ghost lg:hidden">
@@ -50,7 +50,7 @@ const Header = () => {
             {headerOption}
           </ul>
         </div>
-        <a className="font-bold text-xl cursor-pointer">
+        <a className="font-bold text-xl cursor-pointer pl-10">
           ALL STAR MARTIAL ARTS
         </a>
       </div>
