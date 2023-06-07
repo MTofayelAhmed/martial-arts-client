@@ -1,33 +1,59 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../Provider/AuthProvider/AuthProvider";
 
 const Header = () => {
+  const { user, logout } = useContext(AuthContext);
+  const handleLogOut = () => {
+    logout()
+      .then(() => {
+        
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+
   const headerOption = (
     <>
       <li>
-        <Link to='/'>Home</Link>
-        
+        <Link to="/">Home</Link>
       </li>
       <li>
-      <Link to='/'>Instructors</Link>
+        <Link to="/">Instructors</Link>
       </li>
       <li>
-      <Link to='/'>Classes</Link>
+        <Link to="/">Classes</Link>
       </li>
       <li>
-      <Link to='/'>DashBoard</Link>
+        <Link to="/">DashBoard</Link>
       </li>
-      <li>
-   <Link to='/'>  <button>Login</button></Link>
-      </li>
-      <li>
-   <Link to='/'>  <button>LogOut</button></Link>
-   
-      </li>
-
+      {user ? (
+        <>
+          {" "}
+          <li>
+            <Link>
+              {" "}
+              <button onClick={handleLogOut}>LogOut</button>
+            </Link>
+          </li>{" "}
+        </>
+      ) : (
+        <>
+          {" "}
+          <li>
+            <Link to="/login">
+              {" "}
+              <button>Login</button>
+            </Link>
+          </li>
+        </>
+      )}
     </>
   );
+
   return (
-    <div className="navbar fixed z-10 bg-opacity-30 font-serif   text-white h-28">
+    <div className="navbar bg-gray-900 font-serif   text-white h-28">
       <div className="navbar-start">
         <div className="dropdown">
           <label className="btn btn-ghost lg:hidden">
@@ -57,8 +83,6 @@ const Header = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{headerOption}</ul>
       </div>
-    
-   
     </div>
   );
 };
