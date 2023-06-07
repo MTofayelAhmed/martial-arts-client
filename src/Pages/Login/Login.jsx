@@ -3,13 +3,24 @@ import SectionTile from "../../Components/SectionTile";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-
+import { FaGoogle } from "react-icons/fa";
 const Login = () => {
-const location = useLocation()
-const navigate = useNavigate()
-const from = location.state?.from?.pathname || "/"
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/";
 
-  const { login } = useContext(AuthContext);
+  const { login,  googleSignIn } = useContext(AuthContext);
+  const handleGoogleLogin = () => {
+    googleSignIn()
+    .then(result => {
+      const googleLogin= result.user;
+     
+      console.log("google login",googleLogin)
+    })
+    .catch(error=> {
+      console.log(error.message)
+    })
+  };
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -22,18 +33,13 @@ const from = location.state?.from?.pathname || "/"
         const loggedUser = result.user;
         console.log(loggedUser);
         Swal.fire({
-          position: 'top-end',
-          icon: 'success',
-          title: 'You logged in Successfully',
+          position: "top-end",
+          icon: "success",
+          title: "You logged in Successfully",
           showConfirmButton: false,
-          timer: 1500
-        })
-        navigate (from,  { replace: true })
-
-
-
-
-  
+          timer: 1500,
+        });
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.log(error.message);
@@ -78,7 +84,17 @@ const from = location.state?.from?.pathname || "/"
               />
             </div>
           </form>
-          <p className="text-center pb-3 text-gray-900"><small>New Here ? <Link to='/signUp'> Create a New Account</Link> </small></p>
+          <p className="text-center pb-3 text-gray-900">
+            <small>
+              New Here ? <Link to="/signUp"> Create a New Account</Link>{" "}
+            </small>
+          </p>
+          <button
+            onClick={handleGoogleLogin}
+            className="btn btn-circle btn-outline mx-auto mb-3"
+          >
+            <FaGoogle></FaGoogle>
+          </button>
         </div>
       </div>
     </div>

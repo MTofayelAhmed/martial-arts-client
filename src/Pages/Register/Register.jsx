@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-
+import { FaGoogle } from 'react-icons/fa';
 import SectionTile from "../../Components/SectionTile";
 import { Link } from "react-router-dom";
 import { FaRegEyeSlash, FaRegEye } from "react-icons/fa";
@@ -8,7 +8,7 @@ import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
-const {createUser,  updatedUserProfile} = useContext(AuthContext)
+  const { createUser, updatedUserProfile, googleSignIn } = useContext(AuthContext);
   const {
     register,
     handleSubmit,
@@ -16,33 +16,42 @@ const {createUser,  updatedUserProfile} = useContext(AuthContext)
     formState: { errors },
   } = useForm();
 
+  const handleClick = ()=> {
+    googleSignIn()
+    .then(result => {
+      const googleUser= result.user;
+     
+      console.log("google Register", googleUser)
+    })
+    .catch(error=> {
+      console.log(error.message)
+    })
+  }
 
   const onSubmit = (data) => {
     console.log(data);
     createUser(data.email, data.password)
-    .then(result => {
-      const userCreated = result.user;
-      console.log(userCreated)
-      updatedUserProfile(data.name, data.photoURL)
-      .then(() => {
-        
-      }).catch((error) => {
-       console.log(error)
-      });
+      .then((result) => {
+        const userCreated = result.user;
+        console.log(userCreated);
+        updatedUserProfile(data.name, data.photoURL)
+          .then(() => {})
+          .catch((error) => {
+            console.log(error);
+          });
 
-      Swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: 'you are successfully registered',
-        showConfirmButton: false,
-        timer: 1500
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "you are successfully registered",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       })
-      
-    })
 
-    .catch(error=> {
-      console.log(error)
-    })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const togglePasswordVisibility = () => {
@@ -77,7 +86,7 @@ const {createUser,  updatedUserProfile} = useContext(AuthContext)
               </label>
               <input
                 type="text"
-                {...register('photoURL')}
+                {...register("photoURL")}
                 placeholder="Photo URL"
                 className="input input-bordered"
               />
@@ -93,9 +102,9 @@ const {createUser,  updatedUserProfile} = useContext(AuthContext)
                 placeholder="email"
                 className="input input-bordered"
               />
-                 {errors.password?.type === "required" && (
+              {errors.password?.type === "required" && (
                 <p className=" text-red-900 text-center pt-2">
-                 email is required
+                  email is required
                 </p>
               )}
             </div>
@@ -127,9 +136,8 @@ const {createUser,  updatedUserProfile} = useContext(AuthContext)
               )}
               {errors.password?.type === "pattern" && (
                 <p className=" text-red-900 text-center pt-2">
-                 password must have one uppercase, 
-                 one lowercase, one special character,
-                  one number
+                  password must have one uppercase, one lowercase, one special
+                  character, one number
                 </p>
               )}
               <button
@@ -137,11 +145,7 @@ const {createUser,  updatedUserProfile} = useContext(AuthContext)
                 onClick={togglePasswordVisibility}
                 className="absolute ml-[440px] mt-14 text-gray-500 focus:outline-none"
               >
-                {showPassword ? (
-                  <FaRegEyeSlash />
-                ) : (
-                  <FaRegEye  />
-                )}
+                {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
               </button>
             </div>
 
@@ -171,6 +175,9 @@ const {createUser,  updatedUserProfile} = useContext(AuthContext)
               Already have an Account ? <Link to="/login"> please Login</Link>{" "}
             </small>
           </p>
+          <button onClick={handleClick} className="btn btn-circle btn-outline mx-auto mb-3">
+           <FaGoogle></FaGoogle>
+          </button>
         </div>
       </div>
     </div>
