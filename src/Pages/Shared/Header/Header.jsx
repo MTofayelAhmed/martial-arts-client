@@ -6,9 +6,7 @@ const Header = () => {
   const { user, logout } = useContext(AuthContext);
   const handleLogOut = () => {
     logout()
-      .then(() => {
-        
-      })
+      .then(() => {})
       .catch((error) => {
         console.log(error.message);
       });
@@ -28,22 +26,26 @@ const Header = () => {
       <li>
         <Link to="/">DashBoard</Link>
       </li>
+      <li>
+        <Link to="/secret">Secret</Link>
+      </li>
       {user ? (
         <>
-          {" "}
+          <li>
+            <div >
+              <img className="w-12 rounded-full -mt-3" src={user?.photoURL} />
+            </div>
+          </li>
           <li>
             <Link>
-              {" "}
               <button onClick={handleLogOut}>LogOut</button>
             </Link>
-          </li>{" "}
+          </li>
         </>
       ) : (
         <>
-          {" "}
           <li>
             <Link to="/login">
-              {" "}
               <button>Login</button>
             </Link>
           </li>
