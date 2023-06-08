@@ -17,9 +17,9 @@ fetch('http://localhost:5000/classes')
 
 
   return (
-    <div className="mx-10 my-20">
+    <div className="mx-20 my-20">
       <SectionTile heading='popular Classes'></SectionTile>
-      <div className="grid md:grid-cols-3 gap-5 my-20 ">
+      <div className="grid md:grid-cols-3 gap-10 my-20 ">
 {
   classes.slice(0, 6).map((popularClass) => <ClassCard key ={popularClass._id} popularClass= {popularClass}></ClassCard>)
 }
