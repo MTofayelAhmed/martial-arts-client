@@ -18,17 +18,15 @@ const Header = () => {
         <Link to="/">Home</Link>
       </li>
       <li>
-        <Link to="/">Instructors</Link>
+        <Link to="/instructors">Instructors</Link>
       </li>
       <li>
-        <Link to="/">Classes</Link>
+        <Link to="/allClasses">Classes</Link>
       </li>
       <li>
         <Link to="/">DashBoard</Link>
       </li>
-      <li>
-        <Link to="/secret">Secret</Link>
-      </li>
+     
       {user ? (
         <>
           <li>

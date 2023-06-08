@@ -10,10 +10,10 @@ const ClassCard = ({ popularClass }) => {
         <h4 className=" text-white  font-sans  justify-center text-lg card-title">
           Instructor: {instructor}
         </h4>
-       <div className=" flex  justify-end mt-3 ">
-       <p className="text-white "> Enrolled:   {students} </p>
-        <p className="text-white "> Remaining seats:   {students} </p>
-       </div>
+        <h4 className=" text-white  font-sans  justify-center  card-title">
+         students: {students}
+        </h4>
+      
         
 
        
