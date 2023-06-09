@@ -4,6 +4,9 @@ import Footer from "../Pages/Shared/Footer/Footer";
 import { FaShoppingCart, FaWallet, FaHome } from 'react-icons/fa';
 
 const Dashboard = () => {
+
+// TODO
+  const isAdmin = true;
   return (
    <div>
        <Header></Header>
@@ -21,6 +24,25 @@ const Dashboard = () => {
       <div className="drawer-side">
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
         <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content">
+
+          {
+            isAdmin? <></> : <>
+                  <li>
+          <NavLink to='/'><FaHome></FaHome>Home</NavLink>
+          </li>
+          <li>
+           <NavLink to='/dashboard/mySelectedClasses'><FaShoppingCart></FaShoppingCart> My Selected Classes</NavLink>
+          </li>
+          <li>
+          <NavLink to='/dashboard/enrolledClasses'><FaWallet></FaWallet> My Enrolled Classes</NavLink>
+          </li>
+          <li>
+          <NavLink to='/dashboard/paymentHistory'><FaWallet></FaWallet> My Payment History</NavLink>
+          </li>
+            
+            
+            </>
+          }
    
           <li>
           <NavLink to='/'><FaHome></FaHome>Home</NavLink>

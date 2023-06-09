@@ -3,24 +3,15 @@ import SectionTile from "../../Components/SectionTile";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import { FaGoogle } from "react-icons/fa";
+
+import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 const Login = () => {
   const location = useLocation();
   const navigate = useNavigate();
  const from =  location.state?.from?.pathname || "/";
 
-  const { login,  googleSignIn } = useContext(AuthContext);
-  const handleGoogleLogin = () => {
-    googleSignIn()
-    .then(result => {
-      const googleLogin= result.user;
-     
-      console.log("google login",googleLogin)
-    })
-    .catch(error=> {
-      console.log(error.message)
-    })
-  };
+  const { login } = useContext(AuthContext);
+  
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -91,12 +82,7 @@ const Login = () => {
               New Here ? <Link to="/signUp"> Create a New Account</Link>{" "}
             </small>
           </p>
-          <button
-            onClick={handleGoogleLogin}
-            className="btn btn-circle btn-outline mx-auto mb-3"
-          >
-            <FaGoogle></FaGoogle>
-          </button>
+       <SocialLogin></SocialLogin>
         </div>
       </div>
     </div>

@@ -1,35 +1,29 @@
 import { useForm } from "react-hook-form";
-import { FaGoogle } from 'react-icons/fa';
+
 import SectionTile from "../../Components/SectionTile";
-import { Link, useNavigate } from "react-router-dom";
+import { Link,  useNavigate } from "react-router-dom";
 import { FaRegEyeSlash, FaRegEye } from "react-icons/fa";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
+import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const { createUser, updatedUserProfile, googleSignIn } = useContext(AuthContext);
-const navigate = useNavigate()
+  const { createUser, updatedUserProfile} =
+    useContext(AuthContext);
+  const navigate = useNavigate();
+ 
 
 
   const {
     register,
     handleSubmit,
+    reset,
 
     formState: { errors },
   } = useForm();
 
-  const handleClick = ()=> {
-    googleSignIn()
-    .then(result => {
-      const googleUser= result.user;
-     
-      console.log("google Register", googleUser)
-    })
-    .catch(error=> {
-      console.log(error.message)
-    })
-  }
+
 
   const onSubmit = (data) => {
     console.log(data);
@@ -38,20 +32,36 @@ const navigate = useNavigate()
         const userCreated = result.user;
         console.log(userCreated);
         updatedUserProfile(data.name, data.photoURL)
-          .then(() => {})
+          .then(() => {
+            const savedUser = {email: data.email, name:data.name}
+            fetch("http://localhost:5000/users",{
+              method: "POST",
+              headers: {
+                'content-type': 'application/json'
+              },
+              body: JSON.stringify(savedUser)
+            })
+            .then(res=> res.json())
+            .then(data=> {
+              if(data.insertedId){
+                reset();
+                Swal.fire({
+                  position: "top-end",
+                  icon: "success",
+                  title: "you are successfully registered",
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+              }
+            })
+
+          
+            navigate("/login");
+          })
+
           .catch((error) => {
             console.log(error);
           });
-
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "you are successfully registered",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        navigate('/login')
-        
       })
 
       .catch((error) => {
@@ -180,9 +190,8 @@ const navigate = useNavigate()
               Already have an Account ? <Link to="/login"> please Login</Link>{" "}
             </small>
           </p>
-          <button onClick={handleClick} className="btn btn-circle btn-outline mx-auto mb-3">
-           <FaGoogle></FaGoogle>
-          </button>
+          <SocialLogin></SocialLogin>
+        
         </div>
       </div>
     </div>
