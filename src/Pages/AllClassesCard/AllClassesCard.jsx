@@ -1,10 +1,53 @@
-
+import { useContext } from "react";
+import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
+import Swal from "sweetalert2";
+import {useNavigate, useLocation} from 'react-router-dom'
 
 
 const AllClassesCard = ({ course }) => {
+const {user}= useContext(AuthContext)
+const navigate = useNavigate()   
+const location= useLocation() 
+  const { image, name, instructor, availableSeats, price, _id } = course;
+const handleClassCart= ()=> {
+  if(user && user.email){
+    const classCartInfo = {classId: _id,  instructor, name, price, email: user.email}
+fetch('http://localhost:5000/carts',{
+  method: "POST",
+  headers: { 
+    "content-type": "application/json"
+  },
+  body: JSON.stringify(classCartInfo)
 
-  const { image, name, instructor, availableSeats, price } = course;
 
+})
+.then(res=> res.json())
+.then(data=> {
+  if(data.insertedId){
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'This course has been saved',
+      showConfirmButton: false,
+      timer: 1500
+    })
+  }
+})
+  }
+  else{
+    Swal.fire({
+      title: 'Please Login to add classes',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Login please!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+      navigate('/login',{ state: {from: location}})
+      }
+    })
+  }
+}
 
   return (
     <div className={`card lg:card-side ${availableSeats === 0 ? 'bg-red-900 text-white' : 'bg-base-100'}`}>
@@ -20,6 +63,7 @@ const AllClassesCard = ({ course }) => {
         <div className="card-actions mt-10 justify-center">
       
           <button className="h-9 w-44 btn "
+          onClick={handleClassCart}
             disabled={availableSeats === 0}
           
           >

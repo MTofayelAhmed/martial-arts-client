@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { FaGoogle } from 'react-icons/fa';
 import SectionTile from "../../Components/SectionTile";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaRegEyeSlash, FaRegEye } from "react-icons/fa";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
@@ -9,6 +9,9 @@ import Swal from "sweetalert2";
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { createUser, updatedUserProfile, googleSignIn } = useContext(AuthContext);
+const navigate = useNavigate()
+
+
   const {
     register,
     handleSubmit,
@@ -47,6 +50,8 @@ const Register = () => {
           showConfirmButton: false,
           timer: 1500,
         });
+        navigate('/login')
+        
       })
 
       .catch((error) => {

@@ -7,7 +7,7 @@ import { FaGoogle } from "react-icons/fa";
 const Login = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const from = location.state?.from?.pathname || "/";
+ const from =  location.state?.from?.pathname || "/";
 
   const { login,  googleSignIn } = useContext(AuthContext);
   const handleGoogleLogin = () => {
@@ -32,6 +32,7 @@ const Login = () => {
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
+      
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -40,6 +41,7 @@ const Login = () => {
           timer: 1500,
         });
         navigate(from, { replace: true });
+       
       })
       .catch((error) => {
         console.log(error.message);

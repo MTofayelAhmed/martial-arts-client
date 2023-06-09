@@ -6,11 +6,11 @@ const ClassCard = ({ popularClass }) => {
         <img src={image} alt="Shoes" className="rounded-xl h-48 w-72" />
       </figure>
       <div className="card-body   text-center">
-        <h2 className=" text-white uppercase justify-center font-sans card-title">{name}</h2>
-        <h4 className=" text-white  font-sans  justify-center text-lg card-title">
+        <h2 className=" text-gray-400 uppercase justify-center font-sans card-title">{name}</h2>
+        <h4 className=" text-gray-300  justify-center text-lg ">
           Instructor: {instructor}
         </h4>
-        <h4 className=" text-white  font-sans  justify-center  card-title">
+        <h4 className="   font-sans  justify-center text-gray-300 ">
          students: {students}
         </h4>
       
