@@ -33,7 +33,7 @@ const Register = () => {
         console.log(userCreated);
         updatedUserProfile(data.name, data.photoURL)
           .then(() => {
-            const savedUser = {email: data.email, name:data.name}
+            const savedUser = {email: data.email, name:data.name, role:"student"}
             fetch("http://localhost:5000/users",{
               method: "POST",
               headers: {
