@@ -9,6 +9,8 @@ const {user}= useContext(AuthContext)
 const navigate = useNavigate()   
 const location= useLocation() 
   const { image, name, instructor, availableSeats, price, _id } = course;
+
+  
 const handleClassCart= ()=> {
   if(user && user.email){
     const classCartInfo = {classId: _id,  instructor, name, price, email: user.email}
@@ -23,7 +25,8 @@ fetch('http://localhost:5000/carts',{
 })
 .then(res=> res.json())
 .then(data=> {
-  if(data.insertedId){
+  
+  
     Swal.fire({
       position: 'top-end',
       icon: 'success',
@@ -31,7 +34,8 @@ fetch('http://localhost:5000/carts',{
       showConfirmButton: false,
       timer: 1500
     })
-  }
+    console.log(data)
+  
 })
   }
   else{

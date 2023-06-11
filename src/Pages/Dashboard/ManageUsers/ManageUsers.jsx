@@ -74,7 +74,7 @@ const ManageUsers = () => {
   };
 
   return (
-    <div className="-mt-44">
+    <div >
       <SectionTile heading="Admin Panel" subHeading="summer camp"></SectionTile>
       <div className="overflow-x-auto mt-14">
         <table className="table">

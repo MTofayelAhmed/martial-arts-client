@@ -16,7 +16,7 @@ const AddAClass = () => {
     const email = form.email.value;
     const seats = form.seats.value;
     const price = form.price.value;
-    const formData = { name, image, instructor, email, availableSeats: parseFloat(seats), price: parseFloat(price) };
+    const formData = { name, image, instructor, email, availableSeats: parseFloat(seats), price: parseFloat(price), status: "pending" };
 
     fetch("http://localhost:5000/classes", {
       method: "POST",
@@ -74,7 +74,7 @@ const AddAClass = () => {
             <span className="label-text">Instructor Name</span>
           </label>
           <input
-            defaultValue={user.displayName}
+            defaultValue={user?.displayName}
             name="instructor"
             type="text"
             placeholder="Instructor Name"

@@ -35,7 +35,7 @@ const MySelectedClasses = () => {
     });
   };
   return (
-    <div className="-mt-48">
+    <div >
       <SectionTile
         heading="my selected classes"
         subHeading="summer camp"
@@ -62,17 +62,17 @@ const MySelectedClasses = () => {
                 <td>{course.email}</td>
                 <td>{course.price}</td>
                 <td>
-                  {" "}
+                 
                   <button
                     onClick={() => handleDelete(course)}
                     className=" btn btn-sm bg-red-700 text-white"
                   >
                     <FaTrashAlt></FaTrashAlt>
-                  </button>{" "}
+                  </button>
                 </td>
                 <td>
-                  {" "}
-                  <button className="btn  btn-sm">Pay</button>{" "}
+            
+                  <button className="btn  btn-sm">Pay</button>
                 </td>
               </tr>
             ))}

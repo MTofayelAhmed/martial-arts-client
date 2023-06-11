@@ -1,18 +1,83 @@
-import SectionTile from "../../../Components/SectionTile";
-import useClass from "../../../Hook/useClass";
+import  { useState } from 'react';
+import Swal from 'sweetalert2';
+import SectionTile from '../../../Components/SectionTile';
+import useClass from '../../../Hook/useClass';
 
 const ManageClasses = () => {
-  const [classes] = useClass();
+  const [classes, , refetch] = useClass();
+  const [disabledIds, setDisabledIds] = useState([]);
+
+  const handleApprove = (singleClass) => {
+    if (!disabledIds.includes(singleClass._id)) {
+      setDisabledIds([...disabledIds, singleClass._id]);
+
+      fetch(`http://localhost:5000/classes/approve/${singleClass._id}`, {
+        method: 'PATCH',
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data.modifiedCount) {
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: `${singleClass.name} is approved now`,
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            refetch();
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          // Re-enable the button in case of error
+          setDisabledIds(disabledIds.filter((id) => id !== singleClass._id));
+        });
+    }
+  };
+
+  const handleDenied = (singleClass) => {
+    if (!disabledIds.includes(singleClass._id)) {
+      setDisabledIds([...disabledIds, singleClass._id]);
+
+      fetch(`http://localhost:5000/classes/deny/${singleClass._id}`, {
+        method: 'PATCH',
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data.modifiedCount) {
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: `${singleClass.name} is denied now`,
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            refetch();
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          // Re-enable the button in case of error
+          setDisabledIds(disabledIds.filter((id) => id !== singleClass._id));
+        });
+    }
+  };
+
+  const isIdDisabled = (id) => {
+    return disabledIds.includes(id);
+  };
+
+
+  
 
   return (
     <div>
-      <SectionTile
-        subHeading="summer camp"
-        heading="Admin panel- all Class"
-      ></SectionTile>
+      <SectionTile subHeading="summer camp" heading="Admin panel - all Class"></SectionTile>
 
       <div className="overflow-x-auto mt-14">
-        <table className="table ">
+        <table className="table">
           <thead className="bg-gray-900 text-white">
             <tr>
               <th>#</th>
@@ -21,7 +86,7 @@ const ManageClasses = () => {
               <th>Instructor</th>
               <th>Seats</th>
               <th>Price</th>
-              <th>status</th>
+              <th>Status</th>
               <th>Approved</th>
               <th>Denied</th>
               <th>FeedBack</th>
@@ -34,18 +99,38 @@ const ManageClasses = () => {
                 <td>
                   <div className="avatar">
                     <div className="mask mask-squircle w-12 h-12">
-                      <img
-                        src="/tailwind-css-component-profile-2@56w.png"
-                        alt="Avatar Tailwind CSS Component"
-                      />
+                      <img src={singleClass.image} alt="Avatar Tailwind CSS Component" />
                     </div>
                   </div>
                 </td>
-                <td>Cy Ganderton</td>
+                <td>{singleClass.name}</td>
 
-                <td>Quality Control Specialist</td>
-                <td>Blue</td>
-                <td></td>
+                <td>{singleClass.instructor}</td>
+                <td>{singleClass.availableSeats}</td>
+                <td>$ {singleClass.price}</td>
+                <td>{singleClass.status}</td>
+                <td>
+                  <button
+                    onClick={() => handleApprove(singleClass)}
+                    className="btn btn-sm btn-active btn-ghost"
+                    disabled={isIdDisabled(singleClass._id)}
+                  >
+                    Approve
+                  </button>
+                </td>
+                <td>
+                  <button
+                    onClick={() => handleDenied(singleClass)}
+                    className="btn btn-sm btn-active btn-ghost"
+                    disabled={isIdDisabled(singleClass._id)}
+                  >
+                    Deny
+                  </button>
+                </td>
+
+                <td>
+                  <button className="btn btn-sm btn-active btn-ghost">FeedBack</button>
+                </td>
               </tr>
             ))}
           </tbody>

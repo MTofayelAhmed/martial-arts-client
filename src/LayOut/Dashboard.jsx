@@ -4,7 +4,7 @@ import Footer from "../Pages/Shared/Footer/Footer";
 import { FaShoppingCart, FaWallet, FaHome, FaPlusCircle, FaBorderAll, FaUserCircle, FaUserShield } from 'react-icons/fa';
 
 const Dashboard = () => {
-  const isAdmin = true;
+  const isAdmin =  false  ;
   const isInstructor = false;
 
   return (

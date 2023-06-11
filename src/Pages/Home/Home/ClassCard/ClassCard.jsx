@@ -1,5 +1,5 @@
 const ClassCard = ({ popularClass }) => {
-  const { image, name, instructor, students } = popularClass;
+  const { image, name, instructor, availableSeats} = popularClass;
   return (
     <div className="card w-96 bg-gray-950 shadow-2xl">
       <figure className=" pt-10 ">
@@ -11,7 +11,7 @@ const ClassCard = ({ popularClass }) => {
           Instructor: {instructor}
         </h4>
         <h4 className="   font-sans  justify-center text-gray-300 ">
-         students: {students}
+         Seats: {availableSeats}
         </h4>
       
         
