@@ -44,13 +44,14 @@ if(currentUser){
  
     localStorage.setItem('access-token', data.data.token)
     console.log(data.data.token)
+    setLoading(false)
   })
 }
 else{
   localStorage.removeItem('access-token')
 }
       console.log('current user', currentUser)
-      setLoading(false)
+     
     });
     return ()=>{
       unsubscribe()

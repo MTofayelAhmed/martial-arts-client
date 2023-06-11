@@ -2,9 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import SectionTile from "../../../Components/SectionTile";
 import Swal from "sweetalert2";
 import { useState, useEffect } from "react";
+import useAxiosSecure from "../../../Hook/useAxiosSecure";
 
 const ManageUsers = () => {
   const [disabledButtons, setDisabledButtons] = useState([]);
+  const [axiosSecure]= useAxiosSecure()
 
   useEffect(() => {
     const disabledUserIds = localStorage.getItem("disabledUserIds");
@@ -16,8 +18,8 @@ const ManageUsers = () => {
   const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/users");
-      return res.json();
+      const res = await axiosSecure.get("/users");
+      return res.data;
     }
   });
 

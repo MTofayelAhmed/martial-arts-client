@@ -2,10 +2,16 @@ import { NavLink, Outlet } from "react-router-dom";
 import Header from "../Pages/Shared/Header/Header";
 import Footer from "../Pages/Shared/Footer/Footer";
 import { FaShoppingCart, FaWallet, FaHome, FaPlusCircle, FaBorderAll, FaUserCircle, FaUserShield } from 'react-icons/fa';
+import useAdmin from "../Hook/useAdmin";
+import useInstructorCheck from "../Hook/useInstructorCheck";
+import useStudent from "../Hook/useStudent";
 
 const Dashboard = () => {
-  const isAdmin =  false  ;
-  const isInstructor = false;
+  // const isAdmin =  false  ;
+  // const isInstructor = false;
+  const [isAdmin] = useAdmin()
+  const [isInstructor] = useInstructorCheck()
+  const [isStudent] = useStudent()
 
   return (
     <div>
@@ -54,7 +60,7 @@ const Dashboard = () => {
               </>
             )}
 
-            {!isAdmin && !isInstructor && (
+            {!isAdmin && !isInstructor && isStudent  &&(
               <>
                 <li>
                   <NavLink to="/"><FaHome></FaHome>Home</NavLink>

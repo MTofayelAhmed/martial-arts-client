@@ -16,7 +16,7 @@ const [axiosSecure] = useAxiosSecure()
     //       authorization: `bearer ${token}`
     //     }
     queryFn: async () =>{
-      const res = await axiosSecure(`/carts?email=${user?.email}`)
+      const res = await axiosSecure.get(`/carts?email=${user?.email}`)
       console.log('res from axios', res)
       return res.data
       
