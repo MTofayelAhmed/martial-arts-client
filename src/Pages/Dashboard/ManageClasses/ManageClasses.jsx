@@ -1,10 +1,25 @@
 import  { useState } from 'react';
 import Swal from 'sweetalert2';
 import SectionTile from '../../../Components/SectionTile';
-import useClass from '../../../Hook/useClass';
+import { useQuery } from '@tanstack/react-query';
+import useAxiosSecure from '../../../Hook/useAxiosSecure';
+
 
 const ManageClasses = () => {
-  const [classes, , refetch] = useClass();
+const [axiosSecure]= useAxiosSecure()
+
+  const {data: classes=[],  refetch  } = useQuery({
+    queryKey: ['classes/admin'],
+    queryFn: async () =>{
+      const res = await axiosSecure.get("/classes/admin")
+      return res.data
+      
+    }
+   
+   
+  })
+
+
   const [disabledIds, setDisabledIds] = useState([]);
 
   const handleApprove = (singleClass) => {

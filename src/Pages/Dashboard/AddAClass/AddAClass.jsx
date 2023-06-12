@@ -2,10 +2,11 @@ import { useContext } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider/AuthProvider";
 import SectionTile from "../../../Components/SectionTile";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../../Hook/useAxiosSecure";
 
 const AddAClass = () => {
   const { user } = useContext(AuthContext);
-
+const [axiosSecure] = useAxiosSecure()
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -18,16 +19,10 @@ const AddAClass = () => {
     const price = form.price.value;
     const formData = { name, image, instructor, email, availableSeats: parseFloat(seats), price: parseFloat(price), status: "pending" };
 
-    fetch("http://localhost:5000/classes", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    })
-    .then (res=> res.json())
-    .then(data=> {
-      if(data.insertedId){
+   axiosSecure.post("/classes", formData)
+   
+    .then(res=> {
+      if(res.data.insertedId){
         Swal.fire({
           position: 'top-end',
           icon: 'success',
