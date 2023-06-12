@@ -12,7 +12,7 @@ import AllInstructor from "../Pages/AllInstructor/AllInstructor";
 import AllClasses from "../Pages/AllClasses/AllClasses";
 import Dashboard from "../LayOut/Dashboard";
 import MySelectedClasses from "../Pages/Dashboard/MySelectedClasses/MySelectedClasses";
-import PrivateRoute from "./PrivateRoute";
+
 import AddAClass from "../Pages/Dashboard/AddAClass/AddAClass";
 import ManageClasses from "../Pages/Dashboard/ManageClasses/ManageClasses";
 import ManageUsers from "../Pages/Dashboard/ManageUsers/ManageUsers";
@@ -20,6 +20,7 @@ import MyClasses from "../Pages/Dashboard/MyClasses/MyClasses";
 import StudentRoute from "./StudentRoute";
 import InstructorRoute from "./InstructorRoute";
 import AdminRoute from "./AdminRoute";
+import Payment from "../Pages/Dashboard/Payment/Payment";
 
 
 export    const router = createBrowserRouter([
@@ -73,6 +74,10 @@ export    const router = createBrowserRouter([
       {
         path: 'myClasses',
         element: <InstructorRoute><MyClasses></MyClasses></InstructorRoute>
+      },
+      {path: 'payment',
+      element: <Payment></Payment>
+
       }
     ]
   }
