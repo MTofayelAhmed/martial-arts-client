@@ -41,7 +41,7 @@ const AllInstructor = () => {
                 </td>
                 <td>{AllInstructor.instructor}</td>
                 <td>{AllInstructor.email} </td>
-                <td>{AllInstructor.classname}</td>
+                <td className="font-bold">{AllInstructor.classname}</td>
               </tr>
             ))}
           </tbody>
