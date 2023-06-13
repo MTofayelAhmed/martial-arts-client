@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 import {useNavigate, useLocation} from 'react-router-dom'
+import useAxiosSecure from "../../Hook/useAxiosSecure";
 
 
 const AllClassesCard = ({ course }) => {
@@ -9,23 +10,25 @@ const {user}= useContext(AuthContext)
 const navigate = useNavigate()   
 const location= useLocation() 
   const { image, name, instructor, availableSeats, price, _id } = course;
-
+const [axiosSecure] = useAxiosSecure()
   
 const handleClassCart= ()=> {
   if(user && user.email){
     const classCartInfo = {classId: _id,  instructor, name, price, email: user.email}
-fetch('http://localhost:5000/carts',{
-  method: "POST",
-  headers: { 
-    "content-type": "application/json"
-  },
-  body: JSON.stringify(classCartInfo)
+// fetch('http://localhost:5000/carts',{
+//   method: "POST",
+//   headers: { 
+//     "content-type": "application/json"
+//   },
+//   body: JSON.stringify(classCartInfo)
 
 
-})
-.then(res=> res.json())
-.then(data=> {
-  
+// })
+// .then(res=> res.json())
+axiosSecure.post('/carts', classCartInfo)
+
+.then(data => {
+  console.log(data.data)
   
     Swal.fire({
       position: 'top-end',

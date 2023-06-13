@@ -5,15 +5,15 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from '../Provider/AuthProvider/AuthProvider';
 
-
+const axiosSecure = axios.create({
+  baseURL: 'http://localhost:5000', // Replace with your base URL
+});
 
 const useAxiosSecure = () => {
   const navigate = useNavigate();
   const {logout } = useContext(AuthContext)
 
-  const axiosSecure = axios.create({
-    baseURL: 'http://localhost:5000', // Replace with your base URL
-  });
+
 
 
   useEffect(() => {

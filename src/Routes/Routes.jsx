@@ -75,7 +75,7 @@ export    const router = createBrowserRouter([
         path: 'myClasses',
         element: <InstructorRoute><MyClasses></MyClasses></InstructorRoute>
       },
-      {path: 'payment/:price',
+      {path: 'payment',
       element: <Payment></Payment>
       
       }

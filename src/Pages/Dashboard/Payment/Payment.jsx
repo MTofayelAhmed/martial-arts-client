@@ -2,7 +2,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import SectionTile from "../../../Components/SectionTile";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckOutForm from "./CheckOutForm";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 
 
@@ -10,17 +10,17 @@ import { useParams } from "react-router-dom";
 
 const stripePromise = loadStripe(import.meta.env.VITE_Payment_GateWay_PK);
 const Payment = () => {
-  const {price}= useParams()
-  console.log("price",price)
-
+  const location = useLocation();
+  const { course } = location.state;
+  const price = course.price;
 
   return (
     <div className="w-full px-28">
-        <SectionTile heading="Payment" subHeading="summer camp"></SectionTile>
-        <Elements stripe={stripePromise}>
-          <CheckOutForm price={price}></CheckOutForm>
-        </Elements>
-     
+      <SectionTile heading="Payment" subHeading="summer camp"></SectionTile>
+      <Elements stripe={stripePromise}>
+        <CheckOutForm course={course}  price ={ price}></CheckOutForm>
+      </Elements>
+    
     </div>
   );
 };

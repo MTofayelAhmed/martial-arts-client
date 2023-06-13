@@ -80,7 +80,9 @@ const MySelectedClasses = () => {
                 </td>
                 <td>
                
-                  <Link to={`/dashboard/payment/${course.price}`}
+                  <Link to="/dashboard/payment"
+                  state={{ course }}
+
                   > 
                   <button className="btn  btn-sm">Pay</button>
                   </Link>
