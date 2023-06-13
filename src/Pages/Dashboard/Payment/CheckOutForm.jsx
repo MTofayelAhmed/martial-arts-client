@@ -70,24 +70,23 @@ const CheckOutForm = ({ price, course }) => {
         email: user?.email,
         transactionId: paymentIntent.id,
         price,
-        orderStatus: 'service pending',
-        date: new Date(), 
-    cartItem: course._id,
-     classId: course.classId,
-        name: course.name
-      }
-      axiosSecure.post('/payments', payment)
-      .then(res=> {
-        if(res.data.insertedId){
+        orderStatus: "service pending",
+        date: new Date(),
+        cartItem: course._id,
+        classId: course.classId,
+        name: course.name,
+      };
+      axiosSecure.post("/payments", payment).then((res) => {
+        if (res.data.insertedId) {
           Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Your payment info has been saved',
+            position: "top-end",
+            icon: "success",
+            title: "Your payment info has been saved",
             showConfirmButton: false,
-            timer: 1500
-          })
+            timer: 1500,
+          });
         }
-      })
+      });
     }
   };
 
