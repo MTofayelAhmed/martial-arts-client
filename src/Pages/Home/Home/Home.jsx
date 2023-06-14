@@ -10,6 +10,7 @@ const Home = () => {
 
   return (
     <div>
+ 
     <TopSlider></TopSlider>
     <PopularClass></PopularClass>
    <Instructor></Instructor>

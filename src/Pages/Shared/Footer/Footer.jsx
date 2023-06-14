@@ -1,6 +1,10 @@
+import ScrollToTop from "react-scroll-to-top";
+
+
 const Footer = () => {
   return (
     <div className="bg-gray-900  text-white font-serif">
+            <ScrollToTop smooth />
       <footer className="footer p-10  px-20 ">
         <div>
           <span className="footer-title">Services</span>
