@@ -1,7 +1,9 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Hook/useAxiosSecure";
+import usePayment from "../../../Hook/usePayment";
+import useClass from "../../../Hook/useClass";
 
 
 
@@ -18,11 +20,17 @@ const [axiosSecure] = useAxiosSecure()
     },
   });
 
-  
+
+const [admitted] = usePayment()
+const [classes] = useClass()
+const filteredClasses = classes.filter((classItem) => classItem.email === user?.email);
+console.log(filteredClasses)
 
 
-  
-
+const filteredAdmitted = admitted.filter((admittedItem) =>
+filteredClasses.some((classItem) => classItem._id === admittedItem.classId)
+);
+console.log(filteredAdmitted.length)
   return (
     <div className="overflow-x-auto">
       <table className="table">
@@ -42,7 +50,7 @@ const [axiosSecure] = useAxiosSecure()
               <th>{index + 1}</th>
               <td>{instructorClass.name}</td>
               <td>{instructorClass.status}</td>
-              <td></td>
+              <td>{filteredAdmitted.length}</td>
               <td>
                 <button className="btn btn-sm btn-active btn-ghost">
                   update

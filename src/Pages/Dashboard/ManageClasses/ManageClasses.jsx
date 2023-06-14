@@ -26,7 +26,7 @@ const [axiosSecure]= useAxiosSecure()
     if (!disabledIds.includes(singleClass._id)) {
       setDisabledIds([...disabledIds, singleClass._id]);
 
-      fetch(`http://localhost:5000/classes/approve/${singleClass._id}`, {
+      fetch(`https://summer-camp-server-mtofayelahmed.vercel.app/classes/approve/${singleClass._id}`, {
         method: 'PATCH',
       })
         .then((res) => res.json())
@@ -55,7 +55,7 @@ const [axiosSecure]= useAxiosSecure()
     if (!disabledIds.includes(singleClass._id)) {
       setDisabledIds([...disabledIds, singleClass._id]);
 
-      fetch(`http://localhost:5000/classes/deny/${singleClass._id}`, {
+      fetch(`https://summer-camp-server-mtofayelahmed.vercel.app/classes/deny/${singleClass._id}`, {
         method: 'PATCH',
       })
         .then((res) => res.json())
