@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext} from "react";
 import { AuthContext } from "../../../Provider/AuthProvider/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Hook/useAxiosSecure";
@@ -28,7 +28,7 @@ console.log(filteredClasses)
 
 
 const filteredAdmitted = admitted.filter((admittedItem) =>
-filteredClasses.some((classItem) => classItem._id === admittedItem.classId)
+filteredClasses.some((classItem) => String(classItem._id) === admittedItem.classId)
 );
 console.log(filteredAdmitted.length)
   return (
