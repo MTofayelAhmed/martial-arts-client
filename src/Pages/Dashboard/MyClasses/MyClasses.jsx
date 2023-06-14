@@ -3,6 +3,8 @@ import { AuthContext } from "../../../Provider/AuthProvider/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Hook/useAxiosSecure";
 
+
+
 const MyClasses = () => {
   const { user } = useContext(AuthContext);
 const [axiosSecure] = useAxiosSecure()
@@ -15,6 +17,11 @@ const [axiosSecure] = useAxiosSecure()
       return res.data;
     },
   });
+
+  
+
+
+  
 
   return (
     <div className="overflow-x-auto">
@@ -35,7 +42,7 @@ const [axiosSecure] = useAxiosSecure()
               <th>{index + 1}</th>
               <td>{instructorClass.name}</td>
               <td>{instructorClass.status}</td>
-              <td>enrolled number</td>
+              <td></td>
               <td>
                 <button className="btn btn-sm btn-active btn-ghost">
                   update

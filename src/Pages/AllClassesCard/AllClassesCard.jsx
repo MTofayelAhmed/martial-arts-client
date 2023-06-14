@@ -9,12 +9,12 @@ const AllClassesCard = ({ course }) => {
 const {user}= useContext(AuthContext)
 const navigate = useNavigate()   
 const location= useLocation() 
-  const { image, name, instructor, availableSeats, price, _id } = course;
+  const { image, name, instructor, availableSeats, price, _id, email } = course;
 const [axiosSecure] = useAxiosSecure()
   
 const handleClassCart= ()=> {
   if(user && user.email){
-    const classCartInfo = {classId: _id,  instructor, name, price, email: user.email}
+    const classCartInfo = {classId: _id,  instructor, instructorEmail: email,  name, price, email: user.email}
 // fetch('http://localhost:5000/carts',{
 //   method: "POST",
 //   headers: { 

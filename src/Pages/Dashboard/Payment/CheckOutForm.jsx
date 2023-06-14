@@ -44,7 +44,6 @@ const CheckOutForm = ({ price, course }) => {
       setCardError("");
       console.log("[PaymentMethod]", paymentMethod);
     }
-
     setProcessing(true);
 
     const { paymentIntent, error: confirmError } =
@@ -75,6 +74,9 @@ const CheckOutForm = ({ price, course }) => {
         cartItem: course._id,
         classId: course.classId,
         name: course.name,
+        instructor: course.instructor,
+        instructorEmail: course.instructorEmail,
+
       };
       axiosSecure.post("/payments", payment).then((res) => {
         if (res.data.insertedId) {

@@ -23,6 +23,7 @@ import AdminRoute from "./AdminRoute";
 import Payment from "../Pages/Dashboard/Payment/Payment";
 import MyEnrolledClasses from "../Pages/Dashboard/MyEnrolledClasses/MyEnrolledClasses";
 import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
+import Error from "../Pages/Error/Error";
 
 
 export    const router = createBrowserRouter([
@@ -90,5 +91,10 @@ export    const router = createBrowserRouter([
         element: <PaymentHistory></PaymentHistory>
       }
     ]
+  }, 
+  {
+    path: "*",
+   element: <Error></Error>,
+
   }
 ]);
