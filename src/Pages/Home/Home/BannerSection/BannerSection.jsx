@@ -29,7 +29,7 @@ const BannerSection = () => {
             variants={textAnimate}
             initial="offscreen"
             animate="onscreen"
-            className="text-center uppercase font-serif"
+            className="text-center uppercase font-serif -mt-9"
           >
             <span className="text-green-800 text-5xl font-extrabold">Grow</span>
             <span className="text-3xl font-semibold text-gray-500 ml-5">Your</span>
