@@ -17,7 +17,7 @@ const SocialLogin = () => {
       .then((result) => {
         const googleUser = result.user;
         const savedUser= {email: googleUser.email, name: googleUser.displayName, role: "student"}
-        fetch("https://summer-camp-server-mtofayelahmed.vercel.app/users",{
+        fetch("https://summer-camp-server-nu.vercel.app/users",{
               method: "POST",
               headers: {
                 'content-type': 'application/json'

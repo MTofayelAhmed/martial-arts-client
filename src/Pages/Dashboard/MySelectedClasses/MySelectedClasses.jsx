@@ -29,7 +29,7 @@ const MySelectedClasses = () => {
           }
         });
 
-        // fetch(`https://summer-camp-server-mtofayelahmed.vercel.app/carts/${course._id}`, {
+        // fetch(`https://summer-camp-server-nu.vercel.app/carts/${course._id}`, {
         //   method: "DELETE",
         // })
         // .then((res) => res.json())

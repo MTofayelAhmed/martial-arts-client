@@ -11,7 +11,7 @@ const [axiosSecure] = useAxiosSecure()
   const {data:cart=[],  isLoading, refetch  } = useQuery({
     queryKey: ['carts', user?.email ],
     // queryFn: async () =>{
-    //   const res = await fetch(`https://summer-camp-server-mtofayelahmed.vercel.app/carts?email=${user?.email}`, {
+    //   const res = await fetch(`https://summer-camp-server-nu.vercel.app/carts?email=${user?.email}`, {
     //     headers:{
     //       authorization: `bearer ${token}`
     //     }

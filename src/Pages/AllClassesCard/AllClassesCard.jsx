@@ -15,7 +15,7 @@ const [axiosSecure] = useAxiosSecure()
 const handleClassCart= ()=> {
   if(user && user.email){
     const classCartInfo = {classId: _id,  instructor, instructorEmail: email,  name, price, email: user.email}
-// fetch('https://summer-camp-server-mtofayelahmed.vercel.app/carts',{
+// fetch('https://summer-camp-server-nu.vercel.app/carts',{
 //   method: "POST",
 //   headers: { 
 //     "content-type": "application/json"

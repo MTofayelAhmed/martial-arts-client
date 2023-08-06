@@ -24,7 +24,7 @@ const ManageUsers = () => {
   });
 
   const handleInstructor = (user) => {
-    fetch(`https://summer-camp-server-mtofayelahmed.vercel.app/users/instructor/${user._id}`, {
+    fetch(`https://summer-camp-server-nu.vercel.app/users/instructor/${user._id}`, {
       method: "PATCH"
     })
       .then((res) => res.json())
@@ -50,7 +50,7 @@ const ManageUsers = () => {
   };
 
   const handleAdmin = (user) => {
-    fetch(`https://summer-camp-server-mtofayelahmed.vercel.app/users/admin/${user._id}`, {
+    fetch(`https://summer-camp-server-nu.vercel.app/users/admin/${user._id}`, {
       method: "PATCH"
     })
       .then((res) => res.json())

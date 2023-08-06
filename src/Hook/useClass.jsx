@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query"
 const useClass = ()=> {
   // const [classes, setClasses]= useState([])
   // useEffect(()=> {
-  // fetch('https://summer-camp-server-mtofayelahmed.vercel.app/classes')
+  // fetch('https://summer-camp-server-nu.vercel.app/classes')
   // .then(res => res.json())
   // .then(data=> {
   //   setClasses(data)
@@ -17,7 +17,7 @@ const useClass = ()=> {
   const {data: classes=[],  isLoading, refetch  } = useQuery({
     queryKey: ['classes'],
     queryFn: async () =>{
-      const res = await fetch("https://summer-camp-server-mtofayelahmed.vercel.app/classes")
+      const res = await fetch("https://summer-camp-server-nu.vercel.app/classes")
       return res.json()
       
     }
